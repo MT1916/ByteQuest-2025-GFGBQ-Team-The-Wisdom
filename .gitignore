@@ -29,3 +29,10 @@ Desktop.ini
 # IDEs
 .vscode/
 .idea/
+
+
+# Coverage reports
+coverage/
+
+# Vite cache
+.vite/

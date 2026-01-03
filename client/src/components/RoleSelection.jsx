@@ -1,8 +1,12 @@
 import React from 'react';
 import { Heart, Building2, ShieldCheck } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 
-const RoleCard = ({ icon: Icon, title, arabicTitle, description, color }) => (
-    <div className="bg-cream-dark/50 p-8 rounded-2xl border border-gray-200 hover:border-primary/30 transition-all hover:bg-white hover:shadow-lg group cursor-pointer">
+const RoleCard = ({ icon: Icon, title, arabicTitle, description, color, onClick }) => (
+    <div
+        onClick={onClick}
+        className="bg-cream-dark/50 p-8 rounded-2xl border border-gray-200 hover:border-primary/30 transition-all hover:bg-white hover:shadow-lg group cursor-pointer"
+    >
         <div className={`w-14 h-14 rounded-xl flex items-center justify-center mb-6 text-white ${color} group-hover:scale-110 transition-transform`}>
             <Icon size={28} />
         </div>
@@ -15,6 +19,8 @@ const RoleCard = ({ icon: Icon, title, arabicTitle, description, color }) => (
 );
 
 const RoleSelection = () => {
+    const navigate = useNavigate();
+
     return (
         <section className="py-24 bg-cream">
             <div className="container mx-auto px-4">
@@ -32,6 +38,7 @@ const RoleSelection = () => {
                         arabicTitle="متبرع"
                         description="Give Zakaat with full transparency"
                         color="bg-primary"
+                        onClick={() => navigate('/muzakki')}
                     />
                     <RoleCard
                         icon={Building2}
@@ -39,6 +46,7 @@ const RoleSelection = () => {
                         arabicTitle="منظمة"
                         description="Receive and distribute funds"
                         color="bg-accent"
+                        onClick={() => navigate('/ngo')}
                     />
                     <RoleCard
                         icon={ShieldCheck}
@@ -46,6 +54,7 @@ const RoleSelection = () => {
                         arabicTitle="مدقق"
                         description="Verify and approve distributions"
                         color="bg-primary-dark"
+                        onClick={() => navigate('/validator')}
                     />
                 </div>
             </div>
