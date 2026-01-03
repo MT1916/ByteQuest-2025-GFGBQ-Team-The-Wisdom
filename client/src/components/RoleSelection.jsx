@@ -1,6 +1,7 @@
 import React from 'react';
 import { Heart, Building2, ShieldCheck } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../context/AuthContext';
 
 const RoleCard = ({ icon: Icon, title, arabicTitle, description, color, onClick }) => (
     <div
@@ -20,9 +21,17 @@ const RoleCard = ({ icon: Icon, title, arabicTitle, description, color, onClick 
 
 const RoleSelection = () => {
     const navigate = useNavigate();
+    const { login } = useAuth();
+
+    const handleRoleSelect = async (roleKey, path) => {
+        // Simulating wallet connection for specific role
+        // In real app, this would open MetaMask, get address, and then login
+        await login(roleKey);
+        navigate(path);
+    };
 
     return (
-        <section className="py-24 bg-cream">
+        <section id="role-selection" className="py-24 bg-cream">
             <div className="container mx-auto px-4">
                 <div className="text-center mb-16">
                     <span className="text-accent font-bold tracking-widest text-sm uppercase mb-2 block">Get Started</span>
@@ -38,7 +47,7 @@ const RoleSelection = () => {
                         arabicTitle="متبرع"
                         description="Give Zakaat with full transparency"
                         color="bg-primary"
-                        onClick={() => navigate('/muzakki')}
+                        onClick={() => handleRoleSelect('donor', '/donor')}
                     />
                     <RoleCard
                         icon={Building2}
@@ -46,7 +55,7 @@ const RoleSelection = () => {
                         arabicTitle="منظمة"
                         description="Receive and distribute funds"
                         color="bg-accent"
-                        onClick={() => navigate('/ngo')}
+                        onClick={() => handleRoleSelect('ngo', '/ngo')}
                     />
                     <RoleCard
                         icon={ShieldCheck}
@@ -54,7 +63,7 @@ const RoleSelection = () => {
                         arabicTitle="مدقق"
                         description="Verify and approve distributions"
                         color="bg-primary-dark"
-                        onClick={() => navigate('/validator')}
+                        onClick={() => handleRoleSelect('validator', '/validator')}
                     />
                 </div>
             </div>

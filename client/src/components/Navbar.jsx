@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { Wallet, Menu, X, Layers } from 'lucide-react';
+import { useWeb3 } from '../context/Web3Context';
 
 const Navbar = () => {
+    const { connectWallet, account, isConnecting, disconnectWallet } = useWeb3();
     const [isScrolled, setIsScrolled] = useState(false);
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
@@ -12,6 +14,23 @@ const Navbar = () => {
         window.addEventListener('scroll', handleScroll);
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
+
+    const formatAddress = (addr) => {
+        return addr ? `${addr.slice(0, 6)}...${addr.slice(-4)}` : '';
+    };
+
+    const handleConnect = async () => {
+        if (account) {
+            disconnectWallet();
+        } else {
+            try {
+                await connectWallet();
+            } catch (error) {
+                console.error("Connection failed", error);
+                alert("Failed to connect wallet: " + error.message);
+            }
+        }
+    };
 
     return (
         <nav className={`fixed w-full z-50 transition-all duration-300 ${isScrolled ? 'bg-white/90 backdrop-blur-md shadow-sm py-4' : 'bg-transparent py-6'}`}>
@@ -38,9 +57,15 @@ const Navbar = () => {
 
                 {/* Connect Wallet Button */}
                 <div className="hidden md:block">
-                    <button className="flex items-center gap-2 bg-primary hover:bg-primary-light text-white px-6 py-2.5 rounded-lg font-medium transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-0.5">
+                    <button
+                        onClick={handleConnect}
+                        disabled={isConnecting}
+                        className="flex items-center gap-2 bg-primary hover:bg-primary-light text-white px-6 py-2.5 rounded-lg font-medium transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 disabled:opacity-70 disabled:cursor-not-allowed"
+                    >
                         <Wallet size={18} />
-                        <span>Connect MetaMask</span>
+                        <span>
+                            {isConnecting ? 'Connecting...' : account ? formatAddress(account) : 'Connect MetaMask'}
+                        </span>
                     </button>
                 </div>
 
@@ -63,9 +88,18 @@ const Navbar = () => {
                             {item}
                         </a>
                     ))}
-                    <button className="flex items-center justify-center gap-2 bg-primary text-white px-6 py-3 rounded-lg font-medium w-full">
+                    <button
+                        onClick={() => {
+                            handleConnect();
+                            setIsMobileMenuOpen(false);
+                        }}
+                        disabled={isConnecting}
+                        className="flex items-center justify-center gap-2 bg-primary text-white px-6 py-3 rounded-lg font-medium w-full disabled:opacity-70"
+                    >
                         <Wallet size={18} />
-                        <span>Connect MetaMask</span>
+                        <span>
+                            {isConnecting ? 'Connecting...' : account ? formatAddress(account) : 'Connect MetaMask'}
+                        </span>
                     </button>
                 </div>
             )}
