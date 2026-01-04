@@ -1,8 +1,53 @@
-# ZakaatChain
+# 📋 Problem Statement
 
-Hackathon-ready Web3 Zakaat distribution platform ensuring transparency and trust using Blockchain.
+Traditional Zakaat (Islamic charitable giving) distribution systems suffer from:
+- **Lack of Transparency**: Donors cannot track where their funds are being utilized
+- **Trust Issues**: No verifiable proof that funds reach intended beneficiaries
+- **Mismanagement**: Centralized systems are prone to corruption and fund misappropriation
+- **No Accountability**: NGOs lack milestone-based fund release mechanisms
+- **Limited Verification**: No decentralized validation of fund usage and impact
 
-## 📂 Recommended Folder Structure
+**ZakaatChain** solves these problems by leveraging blockchain technology to create a transparent, trustless, and accountable Zakaat distribution platform with milestone-based fund releases and community-driven validation.
+
+---
+
+## 🚀 Project Name
+
+**ZakaatChain** - Transparent Zakaat Distribution on Blockchain
+
+---
+
+## 👥 Team Name
+
+**[YOUR_TEAM_NAME]**  
+*Please update this section with your team name*
+
+---
+
+## 🌐 Deployed Link
+
+**Live Application**: [YOUR_DEPLOYED_LINK]  
+*Please update this section with your deployment URL (if available)*
+
+---
+
+## 🎥 2-Minute Demonstration Video Link
+
+**Demo Video**: [YOUR_VIDEO_LINK]  
+*Please update this section with your demonstration video URL*
+
+---
+
+## 📊 PPT Link
+
+**Presentation**: [YOUR_PPT_LINK]  
+*Please update this section with your presentation link*
+
+---
+
+# 📖 Project Documentation
+
+## 📂 Folder Structure
 
 ```
 ZakaatChain/
@@ -35,18 +80,18 @@ ZakaatChain/
 
 ## 🛠 Tech Stack Justification
 
-*   **Frontend**: **React + Tailwind CSS**.
-    *   *Why*: Fast development, component reusability, and rapid styling for a polished hackathon UI.
-*   **Backend**: **Node.js + Express**.
-    *   *Why*: Simple, familiar JS environment for handling off-chain logic (like specialized auth or metadata caching) and IPFS interaction via API if needed.
-*   **Blockchain**: **Solidity (Generic EVM)**.
-    *   *Why*: Deploys to Polygon/Ethereum (low fees on Polygon, industry standard).
-*   **Wallet**: **MetaMask**.
-    *   *Why*: The standard browser wallet for Web3 interaction.
-*   **Storage**: **IPFS (via Pinata or similar)**.
-    *   *Why*: Decentralized, immutable storage for proofs/receipts.
-*   **Auth**: **Role-based (Smart Contract)**.
-    *   *Why*: Immutable roles (Donor, NGO, Validator) managed directly on-chain for trust.
+*   **Frontend**: **React + Tailwind CSS**
+    *   *Why*: Fast development, component reusability, and rapid styling for a polished hackathon UI
+*   **Backend**: **Node.js + Express**
+    *   *Why*: Simple, familiar JS environment for handling off-chain logic (like specialized auth or metadata caching) and IPFS interaction via API if needed
+*   **Blockchain**: **Solidity (Generic EVM)**
+    *   *Why*: Deploys to Polygon/Ethereum (low fees on Polygon, industry standard)
+*   **Wallet**: **MetaMask**
+    *   *Why*: The standard browser wallet for Web3 interaction
+*   **Storage**: **IPFS (via Pinata or similar)**
+    *   *Why*: Decentralized, immutable storage for proofs/receipts
+*   **Auth**: **Role-based (Smart Contract)**
+    *   *Why*: Immutable roles (Donor, NGO, Validator) managed directly on-chain for trust
 
 ## 🚀 Local Development Setup
 

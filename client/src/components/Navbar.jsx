@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { Wallet, Menu, X, Layers } from 'lucide-react';
 import { useWeb3 } from '../context/Web3Context';
+import { ethers } from 'ethers';
 
 const Navbar = () => {
-    const { connectWallet, account, isConnecting, disconnectWallet } = useWeb3();
+    const { connectWallet, account, isConnecting, disconnectWallet, provider } = useWeb3();
     const [isScrolled, setIsScrolled] = useState(false);
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+    const [balance, setBalance] = useState("0");
 
     useEffect(() => {
         const handleScroll = () => {
@@ -14,6 +16,22 @@ const Navbar = () => {
         window.addEventListener('scroll', handleScroll);
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
+
+    useEffect(() => {
+        const fetchBalance = async () => {
+            if (account && provider) {
+                try {
+                    const bal = await provider.getBalance(account);
+                    setBalance(parseFloat(ethers.formatEther(bal)).toFixed(4));
+                } catch (err) {
+                    console.error("Failed to fetch balance", err);
+                }
+            } else {
+                setBalance("0");
+            }
+        };
+        fetchBalance();
+    }, [account, provider]);
 
     const formatAddress = (addr) => {
         return addr ? `${addr.slice(0, 6)}...${addr.slice(-4)}` : '';
@@ -64,7 +82,7 @@ const Navbar = () => {
                     >
                         <Wallet size={18} />
                         <span>
-                            {isConnecting ? 'Connecting...' : account ? formatAddress(account) : 'Connect MetaMask'}
+                            {isConnecting ? 'Connecting...' : account ? `${balance} ETH | ${formatAddress(account)}` : 'Connect MetaMask'}
                         </span>
                     </button>
                 </div>

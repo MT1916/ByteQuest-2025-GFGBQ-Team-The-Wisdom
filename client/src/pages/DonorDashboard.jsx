@@ -20,6 +20,7 @@ import { ethers } from 'ethers';
 import { CONTRACT_ADDRESS } from '../utils/constants';
 import ZakaatFund from '../contracts/artifacts/contracts/ZakaatFund.sol/ZakaatFund.json';
 import { useWeb3 } from '../context/Web3Context';
+import { supabase } from '../supabaseClient';
 
 const DonorDashboard = () => {
     const { zakaatFundContract, isConnected } = useWeb3();
@@ -52,13 +53,31 @@ const DonorDashboard = () => {
                     id: c.id,
                     name: c.title, // Title as Name
                     asnaf: c.category,
-                    status: "Live",
+                    status: c.status === "PENDING_BLOCKCHAIN" ? "Pending" : "Live",
                     reputation: "Verified"
                 }));
                 if (adapted.length > 0) setCampaigns(adapted);
             }
         };
         fetchCampaigns();
+
+        // Supabase Realtime Subscription
+        let channel;
+        if (supabase) {
+            channel = supabase
+                .channel('public:campaigns')
+                .on('postgres_changes', { event: '*', schema: 'public', table: 'campaigns' }, (payload) => {
+                    console.log('Realtime update:', payload);
+                    fetchCampaigns(); // Refresh data on any change
+                })
+                .subscribe();
+        }
+
+        return () => {
+            if (supabase && channel) {
+                supabase.removeChannel(channel);
+            }
+        };
     }, []);
 
     // Fallback if API hasn't populated yet
@@ -111,8 +130,28 @@ const DonorDashboard = () => {
     const handlePaymentSubmit = async () => {
         try {
             if (!selectedNGO) return;
+
             if (!isConnected || !zakaatFundContract) {
-                throw new Error("Please connect your wallet first");
+                // Try to connect
+                try {
+                    await connectWallet();
+                    // Wait a tick for state to update? 
+                    // Actually connectWallet updates state, but isConnected from hook might not reflect instantly in this closure?
+                    // However, we can use the provider directly if needed, or rely on execution pausing.
+                    // For now, let's assume if it throws it failed, if it passes we might need to rely on the updated contract instance 
+                    // which isn't available in this closure yet.
+
+                    // Better approach: Throw "Please try again now that wallet is connected" or reload page.
+                    // Or simpler: access window.ethereum directly for the transaction if context is stale.
+
+                    // But typically awaiting the hook works if the hook returns the values. 
+                    // My connectWallet doesn't return the contract.
+
+                    alert("Wallet connected! Please click Confirm Payment again.");
+                    return;
+                } catch (e) {
+                    throw new Error("Wallet connection failed: " + e.message);
+                }
             }
 
             // Use fixed amount for demo (in production, get from form input)
@@ -148,10 +187,17 @@ const DonorDashboard = () => {
                         </div>
                     </div>
                     <div className="flex items-center gap-4">
-                        <div className="px-3 py-1 bg-green-50 border border-green-200 rounded-full flex items-center gap-2">
-                            <span className="w-2 h-2 bg-green-600 rounded-full animate-pulse"></span>
-                            <span className="text-xs font-bold text-green-800">Wallet Connected</span>
-                        </div>
+                        {isConnected ? (
+                            <div className="px-3 py-1 bg-green-50 border border-green-200 rounded-full flex items-center gap-2">
+                                <span className="w-2 h-2 bg-green-600 rounded-full animate-pulse"></span>
+                                <span className="text-xs font-bold text-green-800">Wallet Connected</span>
+                            </div>
+                        ) : (
+                            <div className="px-3 py-1 bg-red-50 border border-red-200 rounded-full flex items-center gap-2">
+                                <span className="w-2 h-2 bg-red-600 rounded-full"></span>
+                                <span className="text-xs font-bold text-red-800">Not Connected</span>
+                            </div>
+                        )}
                     </div>
                 </div>
             </nav>

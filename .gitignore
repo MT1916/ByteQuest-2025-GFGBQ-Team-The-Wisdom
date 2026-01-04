@@ -36,3 +36,12 @@ coverage/
 
 # Vite cache
 .vite/
+
+# Smart Contracts (explicit paths for clarity)
+smart-contracts/node_modules/
+smart-contracts/artifacts/
+smart-contracts/cache/
+
+# Server (explicit paths for clarity)
+server/node_modules/
+server/.env

@@ -143,12 +143,8 @@ export const Web3Provider = ({ children }) => {
     useEffect(() => {
         if (window.ethereum) {
             window.ethereum.on('accountsChanged', (accounts) => {
-                if (accounts.length === 0) {
-                    disconnectWallet();
-                } else {
-                    setAccount(accounts[0]);
-                    console.log("Account changed to:", accounts[0]);
-                }
+                // Simplest way to ensure all state (signer, contracts) is fresh
+                window.location.reload();
             });
 
             window.ethereum.on('chainChanged', () => {
