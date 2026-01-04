@@ -44,9 +44,49 @@ Traditional Zakaat (Islamic charitable giving) distribution systems suffer from:
 
 ---
 
-# 📖 Project Documentation
+# 📖 Project Overview
 
-## 📂 Folder Structure
+**ZakaatChain** is a blockchain-based platform that revolutionizes Islamic charitable giving (Zakaat) by ensuring complete transparency, accountability, and trust in the distribution process. Built on Ethereum-compatible networks, ZakaatChain uses smart contracts to manage donations, enforce milestone-based fund releases, and enable community-driven validation.
+
+### 🎯 Key Features
+
+- **🔐 Blockchain-Powered Transparency**: All transactions recorded immutably on-chain
+- **👥 Role-Based Access Control**: Separate dashboards for Donors, NGOs, and Validators
+- **📊 Milestone-Based Fund Release**: Funds released only after validator approval
+- **🕌 Asnaf Category Compliance**: Ensures Zakaat is distributed to the 8 eligible categories
+- **🔍 Real-Time Tracking**: Donors can track their donations from start to finish
+- **📄 IPFS Document Storage**: Expense proofs stored on decentralized storage
+- **🚨 Misuse Detection**: Automatic fund freezing on suspicious activity
+- **💰 MetaMask Integration**: Seamless wallet connection for Web3 transactions
+- **📱 Responsive Design**: Works on desktop, tablet, and mobile devices
+
+### 🏗️ How It Works
+
+1. **NGOs Create Campaigns**: NGOs register and create fundraising campaigns with specific Asnaf categories
+2. **Donors Contribute**: Donors connect their wallets and donate to campaigns they trust
+3. **Funds Held in Escrow**: Donations are held in smart contracts until milestones are met
+4. **NGOs Submit Expenses**: NGOs upload expense proofs (invoices, receipts) to IPFS
+5. **Validators Review**: Community validators review and approve/reject expense claims
+6. **Funds Released**: Upon approval, funds are released to NGO wallets
+7. **Misuse Prevention**: Automatic freezing if suspicious patterns detected
+
+### �️ Tech Stack
+
+| Layer | Technology | Purpose |
+|-------|-----------|---------|
+| **Frontend** | React + Vite | Fast, modern UI framework |
+| **Styling** | Tailwind CSS | Responsive, utility-first styling |
+| **Backend** | Node.js + Express | API server for off-chain logic |
+| **Database** | Supabase | Real-time database for metadata |
+| **Blockchain** | Solidity + Hardhat | Smart contract development |
+| **Web3** | ethers.js | Blockchain interaction library |
+| **Wallet** | MetaMask | Crypto wallet integration |
+| **Storage** | IPFS | Decentralized file storage |
+| **Network** | Polygon Mumbai | Low-cost testnet deployment |
+
+---
+
+## 📂 Project Structure
 
 ```
 ZakaatChain/
@@ -211,3 +251,206 @@ RPC_URL=https://polygon-mumbai.g.alchemy.com/v2/YOUR_KEY
 VITE_ZAKAAT_CONTRACT_ADDRESS=0xYourDeployedContractAddress
 VITE_MILESTONE_VALIDATOR_ADDRESS=0xYourDeployedValidatorAddress
 ```
+
+---
+
+## 📖 Usage Instructions
+
+### For Donors
+
+1. **Connect Wallet**
+   - Click "Connect Wallet" button in the header
+   - Approve MetaMask connection
+   - Ensure you're on the correct network (Polygon Mumbai for testnet)
+
+2. **Browse Campaigns**
+   - Navigate to "Campaigns" page
+   - View all active fundraising campaigns
+   - Filter by Asnaf category (Fuqara, Miskin, etc.)
+
+3. **Make a Donation**
+   - Click on a campaign to view details
+   - Enter donation amount in ETH/MATIC
+   - Click "Donate Now"
+   - Confirm transaction in MetaMask
+   - Receive confirmation and transaction hash
+
+4. **Track Your Donations**
+   - Go to "Donor Dashboard"
+   - View all your past donations
+   - Track campaign progress and fund utilization
+   - See validator approvals for expense releases
+
+### For NGOs
+
+1. **Register as NGO**
+   - Connect wallet with NGO role
+   - Complete NGO profile setup
+
+2. **Create Campaign**
+   - Navigate to "NGO Dashboard"
+   - Click "Create New Campaign"
+   - Fill in campaign details:
+     - Title and description
+     - Funding goal
+     - Asnaf category
+     - Beneficiary details
+   - Submit to blockchain
+   - Wait for transaction confirmation
+
+3. **Submit Expense Proofs**
+   - Upload invoices/receipts to IPFS
+   - Submit expense claim with IPFS hash
+   - Wait for validator review
+
+4. **Withdraw Funds**
+   - Once validators approve expenses
+   - Click "Withdraw Funds"
+   - Funds transferred to your wallet
+
+### For Validators
+
+1. **Access Validator Dashboard**
+   - Connect wallet with validator role
+   - Navigate to "Validator Dashboard"
+
+2. **Review Expense Claims**
+   - View pending expense submissions
+   - Download and verify IPFS documents
+   - Check expense legitimacy
+
+3. **Vote on Claims**
+   - Approve legitimate expenses
+   - Reject suspicious claims with reason
+   - Submit vote to blockchain
+
+4. **Monitor Campaigns**
+   - Track all active campaigns
+   - Flag suspicious activities
+   - Trigger fund freeze if misuse detected
+
+---
+
+## 📸 Screenshots
+
+### 🏠 Landing Page
+*Beautiful hero section with clear call-to-action and platform overview*
+
+![Landing Page](./screenshots/landing-page.png)
+
+---
+
+### 💰 Donor Dashboard
+*Track all your donations, view campaign progress, and monitor fund utilization*
+
+![Donor Dashboard](./screenshots/donor-dashboard.png)
+
+---
+
+### 🏢 NGO Dashboard
+*Create campaigns, submit expense proofs, and manage fundraising activities*
+
+![NGO Dashboard](./screenshots/ngo-dashboard.png)
+
+---
+
+### ✅ Validator Dashboard
+*Review expense claims, vote on approvals, and ensure fund integrity*
+
+![Validator Dashboard](./screenshots/validator-dashboard.png)
+
+---
+
+### 📊 Campaign Details
+*Detailed view of campaign information, progress, and donation history*
+
+![Campaign Details](./screenshots/campaign-details.png)
+
+---
+
+### 🔗 Wallet Connection
+*Seamless MetaMask integration for secure Web3 transactions*
+
+![Wallet Connection](./screenshots/wallet-connection.png)
+
+---
+
+## 🎯 Smart Contract Features
+
+### ZakaatFund Contract
+- Campaign creation and management
+- Donation acceptance and tracking
+- Asnaf category enforcement
+- Fund release mechanisms
+- Automatic misuse detection
+- Emergency fund freezing
+
+### MilestoneValidator Contract
+- Expense submission and storage
+- Multi-validator voting system
+- IPFS hash verification
+- Approval/rejection logic
+- Misuse flagging and reporting
+
+---
+
+## 🔒 Security Features
+
+- ✅ **Role-Based Access Control**: Only authorized users can perform specific actions
+- ✅ **Multi-Signature Validation**: Multiple validators must approve fund releases
+- ✅ **Immutable Records**: All transactions recorded permanently on blockchain
+- ✅ **Automatic Freezing**: Suspicious activities trigger automatic fund locks
+- ✅ **IPFS Verification**: Document hashes ensure proof authenticity
+- ✅ **Smart Contract Auditing**: Code follows best practices and security patterns
+
+---
+
+## 🚀 Future Enhancements
+
+- [ ] Mobile app (iOS & Android)
+- [ ] Multi-chain support (Ethereum, BSC, Avalanche)
+- [ ] AI-powered fraud detection
+- [ ] Automated Zakaat calculation tools
+- [ ] Integration with traditional payment gateways
+- [ ] Multi-language support (Arabic, Urdu, etc.)
+- [ ] Advanced analytics and reporting
+- [ ] NFT-based donation certificates
+
+---
+
+## 👥 Team - The Wisdom
+
+*Add your team member details here*
+
+---
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+---
+
+## 🙏 Acknowledgments
+
+- **Polygon** for providing low-cost blockchain infrastructure
+- **Supabase** for real-time database services
+- **IPFS** for decentralized storage
+- **MetaMask** for wallet integration
+- **Hardhat** for smart contract development tools
+
+---
+
+## 📞 Contact & Support
+
+For questions, issues, or contributions:
+- **GitHub Issues**: [Report a bug or request a feature]
+- **Email**: [Your team email]
+- **Discord**: [Your Discord server]
+
+---
+
+**Built with ❤️ by Team The Wisdom for [Hackathon Name]**
+
+---
+
+*Last Updated: January 2026*
