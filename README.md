@@ -38,7 +38,7 @@ https://zakaat-chain.vercel.app/
 
 ## 📊 PPT Link
 
-[ADD_PPT_LINK_HERE]
+(https://gamma.app/docs/ZakaatChain-t2luxp5jj7vi4qw)
 
 ---
 
