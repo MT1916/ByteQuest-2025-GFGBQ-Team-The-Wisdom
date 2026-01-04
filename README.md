@@ -32,7 +32,7 @@ https://zakaat-chain.vercel.app/
 
 ## 🎥 2-Minute Demonstration Video Link
 
-[ADD_DEMO_VIDEO_LINK_HERE]
+(https://video.pictory.ai/20260104082127901ae3331e1f77848fc8f3efa93ed3645da/2026010408273022704uwSrB0JBqbjIb)
 
 ---
 
