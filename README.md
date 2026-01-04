@@ -19,8 +19,7 @@ Traditional Zakaat (Islamic charitable giving) distribution systems suffer from:
 
 ## 👥 Team Name
 
-**[YOUR_TEAM_NAME]**  
-*Please update this section with your team name*
+**The Wisdom**  
 
 ---
 
