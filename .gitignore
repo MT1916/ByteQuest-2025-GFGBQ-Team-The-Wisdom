@@ -9,8 +9,9 @@ node_modules/
 # Build outputs
 dist/
 build/
-artifacts/
-cache/
+# Ignore smart-contracts artifacts, but allow client contract ABIs
+smart-contracts/artifacts/
+smart-contracts/cache/
 typechain-types/
 
 # Logs
@@ -36,11 +37,6 @@ coverage/
 
 # Vite cache
 .vite/
-
-# Smart Contracts (explicit paths for clarity)
-smart-contracts/node_modules/
-smart-contracts/artifacts/
-smart-contracts/cache/
 
 # Server (explicit paths for clarity)
 server/node_modules/
