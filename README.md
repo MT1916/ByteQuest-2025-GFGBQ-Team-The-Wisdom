@@ -188,33 +188,37 @@ npm run dev
 
 ### 🏠 Landing Page
 ![Landing Page](./screenshots/landing-page.png)
+<img width="1915" height="868" alt="Screenshot 2026-01-04 131151" src="https://github.com/user-attachments/assets/cc091b73-3cd9-41ef-8d94-a0e71a54c3f4" />
+
 
 ---
 
 ### 💰 Donor Dashboard
 ![Donor Dashboard](./screenshots/donor-dashboard.png)
+<img width="1916" height="875" alt="Screenshot 2026-01-04 131608" src="https://github.com/user-attachments/assets/187b8ce0-59e6-431e-843f-5305339cf67c" />
+<img width="1912" height="867" alt="Screenshot 2026-01-04 131619" src="https://github.com/user-attachments/assets/eda48a21-5e1d-48b2-989b-0cdcbadbf08d" />
+
 
 ---
 
 ### 🏢 NGO Dashboard
 ![NGO Dashboard](./screenshots/ngo-dashboard.png)
+<img width="1919" height="877" alt="Screenshot 2026-01-04 131646" src="https://github.com/user-attachments/assets/2dcebc5d-6959-4b6d-81e8-14ef8700606d" />
+<img width="1912" height="874" alt="Screenshot 2026-01-04 131707" src="https://github.com/user-attachments/assets/3a06e347-18e4-41dd-be71-17173606c39e" />
 
 ---
 
 ### ✅ Validator Dashboard
 ![Validator Dashboard](./screenshots/validator-dashboard.png)
-
----
-
-### 📊 Campaign Details
-![Campaign Details](./screenshots/campaign-details.png)
+<img width="1899" height="375" alt="Screenshot 2026-01-04 131724" src="https://github.com/user-attachments/assets/c18a740e-8149-4301-9ce2-efdfc1bfcdbe" />
+<img width="1912" height="868" alt="Screenshot 2026-01-04 131754" src="https://github.com/user-attachments/assets/a662bc23-9078-4af7-8199-8cfcc3a386c2" />
 
 ---
 
 ### 🔗 Wallet Connection
 ![Wallet Connection](./screenshots/wallet-connection.png)
-
-
+<img width="1906" height="875" alt="Screenshot 2026-01-04 133024" src="https://github.com/user-attachments/assets/aed22f4d-1f57-4967-a05d-4099986c6281" />
+<img width="1895" height="876" alt="Screenshot 2026-01-04 133118" src="https://github.com/user-attachments/assets/3a4dcd8f-8637-4e8b-bba2-2bc2a4ca7651" />
 
 
 ---
