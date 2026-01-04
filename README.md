@@ -123,23 +123,91 @@ npm install
 npm run dev # Runs on localhost:5173 (Vite)
 ```
 
-## 🔐 Environment Variables (.env)
+## 🔐 Environment Variables
 
 ### Client (`client/.env`)
+
+**Required for Frontend:**
+
+| Variable | Description | Example Value |
+|----------|-------------|---------------|
+| `VITE_SUPABASE_URL` | Your Supabase project URL | `https://xxxxx.supabase.co` |
+| `VITE_SUPABASE_ANON_KEY` | Supabase anonymous/public key | `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...` |
+
+**Example `.env` file:**
 ```bash
-VITE_CONTRACT_ADDRESS=0x...
-VITE_RPC_URL=http://127.0.0.1:8545/
+VITE_SUPABASE_URL=https://your-project.supabase.co
+VITE_SUPABASE_ANON_KEY=your_supabase_anon_key
 ```
+
+> **Note:** Contract addresses are hardcoded in `client/src/utils/constants.js`:
+> - `CONTRACT_ADDRESS`: `0x5FbDB2315678afecb367f032d93F642f64180aa3`
+> - `VALIDATOR_ADDRESS`: `0xe7f1725E7734CE288F8367e1Bb143E90bb3F0512`
+> 
+> Update these after deploying your smart contracts.
+
+---
 
 ### Server (`server/.env`)
+
+**Required for Backend:**
+
+| Variable | Description | Example Value |
+|----------|-------------|---------------|
+| `PORT` | Server port number | `5000` |
+| `SUPABASE_URL` | Your Supabase project URL | `https://xxxxx.supabase.co` |
+| `SUPABASE_KEY` | Supabase service role key (secret) | `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...` |
+| `RPC_URL` | Blockchain RPC endpoint | `http://127.0.0.1:8545` (local) or `https://polygon-mumbai.g.alchemy.com/v2/YOUR_KEY` |
+| `VITE_ZAKAAT_CONTRACT_ADDRESS` | ZakaatFund contract address | `0x5FbDB2315678afecb367f032d93F642f64180aa3` |
+| `VITE_MILESTONE_VALIDATOR_ADDRESS` | MilestoneValidator contract address | `0xe7f1725E7734CE288F8367e1Bb143E90bb3F0512` |
+
+**Example `.env` file:**
 ```bash
 PORT=5000
-PINATA_API_KEY=your_pinata_key # For IPFS
-PINATA_SECRET_KEY=your_pinata_secret
+SUPABASE_URL=https://your-project.supabase.co
+SUPABASE_KEY=your_supabase_service_role_key
+RPC_URL=http://127.0.0.1:8545
+VITE_ZAKAAT_CONTRACT_ADDRESS=0x5FbDB2315678afecb367f032d93F642f64180aa3
+VITE_MILESTONE_VALIDATOR_ADDRESS=0xe7f1725E7734CE288F8367e1Bb143E90bb3F0512
 ```
 
+---
+
 ### Smart Contracts (`smart-contracts/.env`)
+
+**Required for Contract Deployment:**
+
+| Variable | Description | Example Value |
+|----------|-------------|---------------|
+| `PRIVATE_KEY` | Wallet private key for deployment | `0xac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80` |
+| `POLYGON_RPC_URL` | Polygon Mumbai testnet RPC | `https://polygon-mumbai.g.alchemy.com/v2/YOUR_ALCHEMY_KEY` |
+
+**Example `.env` file:**
 ```bash
-PRIVATE_KEY=your_wallet_private_key # For testnet deployment
-POLYGON_RPC_URL=https://rpc-mumbai.maticvigil.com/
+PRIVATE_KEY=your_wallet_private_key
+POLYGON_RPC_URL=https://polygon-mumbai.g.alchemy.com/v2/YOUR_ALCHEMY_KEY
+```
+
+> ⚠️ **Security Warning:** Never commit `.env` files to Git. Use `.env.example` as a template.
+
+---
+
+## 🚀 Vercel Deployment - Environment Variables
+
+When deploying to Vercel, add these environment variables in the Vercel dashboard:
+
+### For Client Deployment:
+```
+VITE_SUPABASE_URL=https://your-project.supabase.co
+VITE_SUPABASE_ANON_KEY=your_supabase_anon_key
+```
+
+### For Server Deployment:
+```
+PORT=5000
+SUPABASE_URL=https://your-project.supabase.co
+SUPABASE_KEY=your_supabase_service_role_key
+RPC_URL=https://polygon-mumbai.g.alchemy.com/v2/YOUR_KEY
+VITE_ZAKAAT_CONTRACT_ADDRESS=0xYourDeployedContractAddress
+VITE_MILESTONE_VALIDATOR_ADDRESS=0xYourDeployedValidatorAddress
 ```
