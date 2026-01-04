@@ -45,3 +45,6 @@ smart-contracts/cache/
 # Server (explicit paths for clarity)
 server/node_modules/
 server/.env
+
+# Vercel
+.vercel/
